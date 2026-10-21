@@ -57,34 +57,21 @@ button:disabled { opacity: .5; }
 .stage video { object-fit: cover; }
 .stage.mirror video { transform: scaleX(-1); }
 
-.topbar {
+/* フレーム：画面の上の端に置く。幅と位置は js/app.js の layoutFrame() が写真と同じ計算で決める */
+.frame {
   position: fixed;
-  top: calc(10px + env(safe-area-inset-top));
-  left: 12px;
-  right: 12px;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
+  top: 0;
+  left: 0;
+  height: auto;
   pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-.chip {
-  pointer-events: auto;
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 14px;
-  background: rgba(0, 0, 0, .45);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-.chip.title { pointer-events: none; }
 
 .hint {
   position: fixed;
   left: 50%;
-  top: calc(64px + env(safe-area-inset-top));
+  bottom: calc(118px + env(safe-area-inset-bottom)); /* 上はフレームがあるので、シャッターの上に出す */
   transform: translateX(-50%);
   margin: 0;
   padding: 6px 14px;
@@ -194,7 +181,7 @@ button:disabled { opacity: .5; }
   position: fixed;
   left: 12px;
   right: 12px;
-  top: calc(58px + env(safe-area-inset-top)); /* つばめいはふつう画面の下に立つので、パネルは上に出す */
+  top: calc(10px + env(safe-area-inset-top)); /* つばめいはふつう画面の下に立つので、パネルは上に出す */
   max-width: 460px;
   max-height: calc(100dvh - 200px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   margin: 0 auto;

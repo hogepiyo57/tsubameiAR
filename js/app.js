@@ -53,7 +53,23 @@ function placeChara() {
   chara.rotation.set(0.15, THREE.MathUtils.degToRad(place.turn), 0);
 }
 
+// ---------- フレーム ----------
+// 画面の幅いっぱいに置く。ただし横長の画面（iPad の横向きなど）では高さが画面の FRAME_MAX_H をこえないよう小さくし、中央に置く
+const frame = $('frame');
+const FRAME_ASPECT = 1536 / 500; // assets/frame.webp の横÷縦
+const FRAME_MAX_H = 0.3;
+function frameRect(W, H) {
+  const w = Math.min(W, H * FRAME_MAX_H * FRAME_ASPECT);
+  return { x: (W - w) / 2, y: 0, w, h: w / FRAME_ASPECT };
+}
+function layoutFrame() {
+  const r = frameRect(stage.clientWidth, stage.clientHeight);
+  frame.style.left = `${r.x}px`;
+  frame.style.width = `${r.w}px`;
+}
+
 function resize() {
+  layoutFrame();
   const w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
@@ -239,6 +255,11 @@ function compose() {
   g.drawImage(glCanvas, 0, 0, W, H);
   renderer.setPixelRatio(pr);
   resize();
+  // いちばん上にフレーム（画面と同じ位置・同じ割合）
+  if (frame.complete && frame.naturalWidth) {
+    const r = frameRect(W, H);
+    g.drawImage(frame, r.x, r.y, r.w, r.h);
+  }
   return out;
 }
 

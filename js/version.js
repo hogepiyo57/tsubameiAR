@@ -1,4 +1,4 @@
 // アプリのバージョン（設定パネルの下に表示）。更新を公開するたびに上げる
 //   大きな作り直し＝1つ目、機能の追加＝2つ目、修正だけ＝3つ目 を上げる
-export const VERSION = '1.0.2';
+export const VERSION = '1.1.0';
 export const RELEASED = '2026-10-21';
