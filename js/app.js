@@ -192,6 +192,21 @@ chips($('timer'), 'sec', timerSec, (sec) => { timerSec = sec; save('timer', sec)
 
 $('ver').textContent = `ver ${VERSION}（${RELEASED.replaceAll('-', '.')}）`;
 
+// ---------- 「ホーム画面に追加」の案内 ----------
+// iPhone の Safari はページから全画面にできず、横向きではタブとアドレスバーが残る。
+// ホーム画面から開けば全画面になるので、iPhone を横にしたときだけ案内する（✕で閉じたら出さない）
+const a2hs = $('a2hs');
+const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
+const isStandalone = navigator.standalone === true || matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+const landscape = matchMedia('(orientation: landscape)');
+function paintA2hs() {
+  a2hs.hidden = !(isIPhone && !isStandalone && landscape.matches && load('a2hs') !== 'closed');
+  if (!a2hs.hidden) hideHint();
+}
+landscape.addEventListener('change', paintA2hs);
+$('a2hsClose').addEventListener('click', () => { save('a2hs', 'closed'); paintA2hs(); });
+paintA2hs();
+
 // ---------- カメラ ----------
 const overlay = $('overlay'), overlayMsg = $('overlayMsg'), retry = $('retry');
 let facing = initialFacing();

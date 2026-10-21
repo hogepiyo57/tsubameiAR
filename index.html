@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<!-- ホーム画面に追加すると、ブラウザのタブやアドレスバーのない全画面で開く（iPhone の Safari は、ページから全画面にできないため） -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/app-icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="つばめい">
 <title>つばめいと しゃしん</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +36,10 @@
 <img id="frame" class="frame" src="assets/frame.webp" alt="">
 
 <p class="hint" id="hint">1本の指で うごかす ・ 2本の指で 大きさ</p>
+<div class="a2hs" id="a2hs" hidden>
+  <p>全画面で使うには、Safari の共有ボタン <span class="share-icon" aria-label="共有">⬆︎</span> →「ホーム画面に追加」から開いてください</p>
+  <button type="button" id="a2hsClose" aria-label="とじる">✕</button>
+</div>
 <div class="countdown" id="countdown" hidden></div>
 <div class="flash" id="flash"></div>
 
