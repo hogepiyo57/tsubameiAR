@@ -15,12 +15,23 @@ const stage = $('stage'), video = $('video'), glCanvas = $('gl');
 const DEFAULT_PLACE = { x: 0.7, y: 0.92, size: 0.5, turn: -15 };
 const LIMIT = { x: [0, 1], y: [0.1, 1.5], size: [0.1, 1.5], turn: [-90, 90] };
 const clamp = (v, [a, b]) => Math.min(b, Math.max(a, v));
+// つばめいが画面の外や下のボタンのかげにかくれて「出ない」ように見えるのをふせぐ
+const VISIBLE = 0.5;    // つばめいの高さのうち、いつも見えるところに残す割合（上半分＝顔が見える）
+const BUTTONS_TOP = 0.85; // 下のボタンの列の上のはし（画面の高さに対する割合）
+
+// それぞれの範囲におさめたうえで、上下は「つばめいの VISIBLE ぶんが、画面の上はし〜ボタンの列の上」に入るようにする
+function keepOnScreen() {
+  for (const k of Object.keys(LIMIT)) place[k] = clamp(place[k], LIMIT[k]);
+  place.y = clamp(place.y, [VISIBLE * place.size, BUTTONS_TOP + (1 - VISIBLE) * place.size]);
+}
+
 const place = { ...DEFAULT_PLACE, ...(loadJSON('place') || {}) };
-for (const k of Object.keys(LIMIT)) place[k] = clamp(Number.isFinite(place[k]) ? place[k] : DEFAULT_PLACE[k], LIMIT[k]);
+for (const k of Object.keys(LIMIT)) if (!Number.isFinite(place[k])) place[k] = DEFAULT_PLACE[k];
+keepOnScreen(); // 前に記憶した位置が画面の外でも、開いたときに見える位置へ戻す
 
 let saveTimer = 0;
 function placeChanged() {
-  for (const k of Object.keys(LIMIT)) place[k] = clamp(place[k], LIMIT[k]);
+  keepOnScreen();
   paintSliders();
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => saveJSON('place', place), 300);
