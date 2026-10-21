@@ -109,6 +109,7 @@ button:disabled { opacity: .5; }
   text-shadow: 0 0 24px rgba(0, 0, 0, .6);
   pointer-events: none;
 }
+.countdown[hidden] { display: none; } /* display: grid が hidden より強いので、明示しないと最後の「1」が残る */
 
 .flash {
   position: fixed;
