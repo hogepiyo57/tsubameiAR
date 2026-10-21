@@ -85,27 +85,36 @@ button:disabled { opacity: .5; }
 }
 .hint.gone { opacity: 0; }
 
-/* iPhone を横にしたとき（Safari）の「ホーム画面に追加」の案内 */
-.a2hs {
-  position: fixed;
-  left: 50%;
-  bottom: calc(112px + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  width: min(560px, calc(100% - 32px));
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 8px 8px 14px;
-  border-radius: 14px;
-  background: rgba(255, 250, 242, .95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
-  font-size: 13px;
-  line-height: 1.5;
+/* iPhone を横にしたときの「たてむきにしてください」。ほかのすべての上に重ねる */
+.rotate { display: none; }
+@media (orientation: landscape) {
+  .iphone .rotate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 18px;
+    background: var(--purple-dark);
+    color: #fff;
+    text-align: center;
+  }
 }
-.a2hs[hidden] { display: none; }
-.a2hs p { margin: 0; flex: 1; }
-.a2hs .share-icon { color: #0a7cff; font-weight: 700; }
-.a2hs button { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #e8e0ec; }
+.rotate p { margin: 0; font-size: 20px; line-height: 1.6; }
+.rotate b { color: var(--accent); }
+/* 横にしたスマホが、たてに起き上がる動き */
+.rotate-phone {
+  width: 46px;
+  height: 80px;
+  border: 4px solid #fff;
+  border-radius: 10px;
+  animation: stand-up 2s ease-in-out infinite;
+}
+@keyframes stand-up {
+  0%, 25% { transform: rotate(-90deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
 
 .countdown {
   position: fixed;
