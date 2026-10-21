@@ -157,6 +157,38 @@ button:disabled { opacity: .5; }
 .round .icon { font-size: 22px; line-height: 1; }
 .round[aria-expanded="true"] { background: var(--purple); }
 
+/* カメラのスイッチ：選んでいる側（イン／アウト）が白くうかぶ */
+.camswitch {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 6px 6px 7px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, .45);
+  color: #fff;
+  font-size: 12px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.seg {
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .22);
+}
+.seg button {
+  min-width: 46px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background .2s, color .2s;
+}
+.seg button[aria-pressed="true"] { background: #fff; color: var(--purple-dark); }
+
 .panel {
   position: fixed;
   left: 12px;
@@ -200,6 +232,7 @@ button:disabled { opacity: .5; }
   font-size: 13px;
 }
 .chips button[aria-pressed="true"] { background: var(--purple); color: #fff; }
+.panel .done { display: flex; width: 100%; margin-top: 10px; min-height: 40px; }
 .ver { margin: 6px 0 0; font-size: 11px; color: #8a7f8f; text-align: right; }
 
 /* はじめの画面・撮影結果 */

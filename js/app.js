@@ -1,6 +1,6 @@
 // カメラ画面：カメラの映像の上に3Dのつばめいを重ねて、いっしょに写真をとる
 //   つばめいの位置・大きさは画面の割合で持つ（x＝左右、y＝足もとの高さ、size＝高さ。どれも画面の幅・高さに対する割合）
-//   1本指のドラッグで移動、2本指のピンチで拡大縮小。調整パネルのスライダーでも変えられる
+//   1本指のドラッグで移動、2本指のピンチで拡大縮小。設定パネルのスライダーでも変えられる
 import * as THREE from 'three';
 import { createTsubamei, TSUBAMEI_HEIGHT } from './models/tsubamei.js';
 import { cameraErrorText, initialFacing, rememberFacing, startCamera } from './camera.js';
@@ -124,7 +124,7 @@ const hint = $('hint');
 function hideHint() { hint.classList.add('gone'); }
 setTimeout(hideHint, 6000);
 
-// ---------- 調整パネル ----------
+// ---------- 設定パネル ----------
 const SLIDERS = {
   size: { scale: 100, text: (v) => `${Math.round(v * 100)}%` },
   x: { scale: 100, text: (v) => `${Math.round(v * 100)}` },
@@ -151,13 +151,15 @@ $('resetPlace').addEventListener('click', () => {
 });
 
 const panel = $('panel'), toggle = $('togglePanel');
-toggle.addEventListener('click', () => {
-  panel.hidden = !panel.hidden;
-  hideHint();
-  toggle.setAttribute('aria-expanded', String(!panel.hidden));
-});
+function showPanel(open) {
+  panel.hidden = !open;
+  toggle.setAttribute('aria-expanded', String(open));
+  if (open) hideHint();
+}
+toggle.addEventListener('click', () => showPanel(panel.hidden));
+$('closePanel').addEventListener('click', () => showPanel(false));
 
-// 選択式のボタン（ポーズ・タイマー）
+// 選択式のボタン（タイマー）
 function chips(root, attr, current, onPick) {
   const buttons = [...root.querySelectorAll('button')];
   const paint = (v) => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[attr] === v)));
@@ -169,10 +171,6 @@ function chips(root, attr, current, onPick) {
     onPick(b.dataset[attr]);
   });
 }
-chips($('poses'), 'pose', 'auto', (pose) => {
-  if (pose === 'auto') chara.userData.setAuto();
-  else chara.userData.holdPose(pose);
-});
 let timerSec = load('timer') ?? '3';
 chips($('timer'), 'sec', timerSec, (sec) => { timerSec = sec; save('timer', sec); });
 
@@ -184,7 +182,7 @@ let facing = initialFacing();
 
 function paintFacing() {
   stage.classList.toggle('mirror', facing === 'user');
-  $('camLabel').textContent = facing === 'user' ? 'イン' : 'アウト';
+  for (const b of $('camSwitch').querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.facing === facing));
 }
 
 async function openCamera() {
@@ -202,16 +200,18 @@ async function openCamera() {
 }
 retry.addEventListener('click', openCamera);
 
+// カメラのスイッチ：押した側（イン／アウト）に切りかえる
 let switching = false;
-async function switchCamera() {
-  if (switching) return;
+$('camSwitch').addEventListener('click', async (e) => {
+  const b = e.target.closest('button');
+  if (!b || switching || b.dataset.facing === facing) return;
   switching = true;
-  facing = facing === 'user' ? 'environment' : 'user';
+  facing = b.dataset.facing;
   rememberFacing(facing);
+  paintFacing();
   await openCamera();
   switching = false;
-}
-$('switchCam').addEventListener('click', switchCamera);
+});
 paintFacing();
 openCamera();
 
@@ -246,8 +246,7 @@ const shutter = $('shutter');
 shutter.addEventListener('click', async () => {
   if (!video.videoWidth) return;
   shutter.disabled = true;
-  panel.hidden = true;
-  toggle.setAttribute('aria-expanded', 'false');
+  showPanel(false);
   await countdown($('countdown'), Number(timerSec));
   const photo = compose();
   flash($('flash'));

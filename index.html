@@ -34,9 +34,9 @@
 <div class="countdown" id="countdown" hidden></div>
 <div class="flash" id="flash"></div>
 
-<section class="panel" id="panel" hidden aria-label="つばめいの調整">
+<section class="panel" id="panel" hidden aria-label="設定">
   <div class="panel-head">
-    <h2>つばめいの 調整</h2>
+    <h2>設定</h2>
     <button class="link" type="button" id="resetPlace">もとにもどす</button>
   </div>
   <label class="slider">大きさ <output id="sizeOut"></output>
@@ -52,17 +52,6 @@
     <input type="range" id="turn" min="-90" max="90" step="1">
   </label>
   <div class="group">
-    <span class="group-label">ポーズ</span>
-    <div class="chips" id="poses">
-      <button type="button" data-pose="auto">じどう</button>
-      <button type="button" data-pose="stand">立つ</button>
-      <button type="button" data-pose="wave">手をふる</button>
-      <button type="button" data-pose="banzai">ばんざい</button>
-      <button type="button" data-pose="shy">てれる</button>
-      <button type="button" data-pose="fly">とぶ</button>
-    </div>
-  </div>
-  <div class="group">
     <span class="group-label">タイマー</span>
     <div class="chips" id="timer">
       <button type="button" data-sec="0">なし</button>
@@ -70,17 +59,22 @@
       <button type="button" data-sec="5">5秒</button>
     </div>
   </div>
+  <button class="btn primary done" type="button" id="closePanel">設定を おわる</button>
   <p class="ver" id="ver"></p>
 </section>
 
 <nav class="bottombar">
   <button class="round" type="button" id="togglePanel" aria-expanded="false">
-    <span class="icon" aria-hidden="true">⚙</span><span>調整</span>
+    <span class="icon" aria-hidden="true">⚙</span><span>設定</span>
   </button>
   <button class="shutter" type="button" id="shutter" aria-label="しゃしんを とる"></button>
-  <button class="round" type="button" id="switchCam" aria-label="カメラを切りかえる">
-    <span class="icon" aria-hidden="true">⟲</span><span id="camLabel">イン</span>
-  </button>
+  <div class="camswitch" role="group" aria-label="カメラの切りかえ">
+    <span class="camswitch-label">カメラ</span>
+    <div class="seg" id="camSwitch">
+      <button type="button" data-facing="user">イン</button>
+      <button type="button" data-facing="environment">アウト</button>
+    </div>
+  </div>
 </nav>
 
 <div class="overlay" id="overlay">
