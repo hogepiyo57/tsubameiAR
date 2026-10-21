@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<title>つばめいと しゃしん</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="camera-page">
+<div id="stage" class="stage">
+  <video id="video" playsinline muted autoplay></video>
+  <canvas id="gl"></canvas>
+</div>
+
+<div class="topbar">
+  <span class="chip title">つばめいと しゃしん</span>
+</div>
+
+<p class="hint" id="hint">1本の指で うごかす ・ 2本の指で 大きさ</p>
+<div class="countdown" id="countdown" hidden></div>
+<div class="flash" id="flash"></div>
+
+<section class="panel" id="panel" hidden aria-label="つばめいの調整">
+  <div class="panel-head">
+    <h2>つばめいの 調整</h2>
+    <button class="link" type="button" id="resetPlace">もとにもどす</button>
+  </div>
+  <label class="slider">大きさ <output id="sizeOut"></output>
+    <input type="range" id="size" min="10" max="150" step="1">
+  </label>
+  <label class="slider">左右 <output id="xOut"></output>
+    <input type="range" id="x" min="0" max="100" step="1">
+  </label>
+  <label class="slider">上下 <output id="yOut"></output>
+    <input type="range" id="y" min="10" max="150" step="1">
+  </label>
+  <label class="slider">むき <output id="turnOut"></output>
+    <input type="range" id="turn" min="-90" max="90" step="1">
+  </label>
+  <div class="group">
+    <span class="group-label">ポーズ</span>
+    <div class="chips" id="poses">
+      <button type="button" data-pose="auto">じどう</button>
+      <button type="button" data-pose="stand">立つ</button>
+      <button type="button" data-pose="wave">手をふる</button>
+      <button type="button" data-pose="banzai">ばんざい</button>
+      <button type="button" data-pose="shy">てれる</button>
+      <button type="button" data-pose="fly">とぶ</button>
+    </div>
+  </div>
+  <div class="group">
+    <span class="group-label">タイマー</span>
+    <div class="chips" id="timer">
+      <button type="button" data-sec="0">なし</button>
+      <button type="button" data-sec="3">3秒</button>
+      <button type="button" data-sec="5">5秒</button>
+    </div>
+  </div>
+  <p class="ver" id="ver"></p>
+</section>
+
+<nav class="bottombar">
+  <button class="round" type="button" id="togglePanel" aria-expanded="false">
+    <span class="icon" aria-hidden="true">⚙</span><span>調整</span>
+  </button>
+  <button class="shutter" type="button" id="shutter" aria-label="しゃしんを とる"></button>
+  <button class="round" type="button" id="switchCam" aria-label="カメラを切りかえる">
+    <span class="icon" aria-hidden="true">⟲</span><span id="camLabel">イン</span>
+  </button>
+</nav>
+
+<div class="overlay" id="overlay">
+  <div class="card">
+    <img src="assets/icon.png" alt="" class="card-img">
+    <h1>つばめいと しゃしん</h1>
+    <p id="overlayMsg">カメラを じゅんびしています…</p>
+    <button class="btn primary" type="button" id="retry" hidden>カメラを はじめる</button>
+  </div>
+</div>
+
+<div class="overlay result" id="result" hidden>
+  <div class="card">
+    <img alt="とった しゃしん" class="photo">
+    <p class="small">画像を長おしでも ほぞんできます</p>
+    <div class="actions">
+      <button class="btn primary" type="button" data-act="share">しゃしんを ほぞん</button>
+      <button class="btn primary" type="button" data-act="download">ダウンロード</button>
+      <button class="btn" type="button" data-act="close">もう一度 とる</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

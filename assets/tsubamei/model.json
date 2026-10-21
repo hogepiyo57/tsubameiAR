@@ -1,0 +1,259 @@
+{
+ "version": 2,
+ "source": "つばめい (2).PNG",
+ "height": 1.2,
+ "atlas": [
+  1024,
+  2048
+ ],
+ "colors": {
+  "purple": "#9068a0",
+  "line": "#180e18"
+ },
+ "eyes": [
+  [
+   180.91374663072781,
+   192.5504043126685,
+   39.0,
+   60.0
+  ],
+  [
+   364.8893109061313,
+   192.52794357026585,
+   38.0,
+   60.0
+  ]
+ ],
+ "parts": [
+  {
+   "name": "crest",
+   "parent": "head",
+   "vertexCount": 2024,
+   "frontIndexCount": 6072,
+   "indexCount": 12144,
+   "position": 0,
+   "uv": 24288,
+   "index": 40480,
+   "position0": [
+    -0.0007001166861143524,
+    0.3038506417736289,
+    0.0
+   ]
+  },
+  {
+   "name": "beak",
+   "parent": "head",
+   "vertexCount": 550,
+   "frontIndexCount": 1644,
+   "indexCount": 3288,
+   "position": 64768,
+   "uv": 71368,
+   "index": 75768,
+   "position0": [
+    0.0,
+    0.12602100350058343,
+    0.0
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "body",
+   "vertexCount": 8768,
+   "frontIndexCount": 26298,
+   "indexCount": 52596,
+   "position": 82344,
+   "uv": 187560,
+   "index": 257704,
+   "position0": [
+    0.0,
+    0.27304550758459745,
+    0.0
+   ]
+  },
+  {
+   "name": "shorts",
+   "parent": "body",
+   "vertexCount": 2460,
+   "frontIndexCount": 7374,
+   "indexCount": 14748,
+   "position": 362896,
+   "uv": 392416,
+   "index": 412096,
+   "position0": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "wingL",
+   "parent": "body",
+   "vertexCount": 1428,
+   "frontIndexCount": 4278,
+   "indexCount": 8556,
+   "position": 441592,
+   "uv": 458728,
+   "index": 470152,
+   "position0": [
+    -0.25420247788297123,
+    0.2534422403733956,
+    0.0
+   ]
+  },
+  {
+   "name": "wingR",
+   "parent": "body",
+   "vertexCount": 1448,
+   "frontIndexCount": 4338,
+   "indexCount": 8676,
+   "position": 487264,
+   "uv": 504640,
+   "index": 516224,
+   "position0": [
+    0.24644900684580573,
+    0.2534422403733956,
+    0.0
+   ]
+  },
+  {
+   "name": "footL",
+   "parent": "body",
+   "vertexCount": 512,
+   "frontIndexCount": 1530,
+   "indexCount": 3060,
+   "position": 533576,
+   "uv": 539720,
+   "index": 543816,
+   "position0": [
+    -0.11481913652275379,
+    -0.19603267211201866,
+    0.0
+   ]
+  },
+  {
+   "name": "footR",
+   "parent": "body",
+   "vertexCount": 516,
+   "frontIndexCount": 1542,
+   "indexCount": 3084,
+   "position": 549936,
+   "uv": 556128,
+   "index": 560256,
+   "position0": [
+    0.11481913652275379,
+    -0.19603267211201866,
+    0.0
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "body",
+   "vertexCount": 3818,
+   "frontIndexCount": 11448,
+   "indexCount": 22896,
+   "position": 566424,
+   "uv": 612240,
+   "index": 642784,
+   "position0": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "tailL",
+   "parent": "body",
+   "vertexCount": 1064,
+   "frontIndexCount": 3186,
+   "indexCount": 6372,
+   "position": 688576,
+   "uv": 701344,
+   "index": 709856,
+   "position0": [
+    -0.11481913652275379,
+    -0.19463243873978997,
+    -0.14702033457103045
+   ],
+   "rotation0": [
+    1.2487614190339404,
+    0.0,
+    -1.7090811729888644
+   ]
+  },
+  {
+   "name": "tailR",
+   "parent": "body",
+   "vertexCount": 1064,
+   "frontIndexCount": 3186,
+   "indexCount": 6372,
+   "position": 722600,
+   "uv": 735368,
+   "index": 743880,
+   "position0": [
+    0.11481913652275379,
+    -0.19463243873978997,
+    -0.14644516208356373
+   ],
+   "rotation0": [
+    1.2487614190339404,
+    0.0,
+    -1.432511480600929
+   ]
+  },
+  {
+   "name": "tuft",
+   "parent": "head",
+   "vertexCount": 106,
+   "frontIndexCount": 312,
+   "indexCount": 624,
+   "position": 756624,
+   "uv": 757896,
+   "index": 758744,
+   "position0": [
+    0,
+    0.44807467911318555,
+    -0.15283377534781237
+   ],
+   "rotation0": [
+    0,
+    1.5707963267948966,
+    0.5
+   ]
+  },
+  {
+   "name": "spreadL",
+   "parent": "body",
+   "vertexCount": 2618,
+   "frontIndexCount": 7854,
+   "indexCount": 15708,
+   "position": 759992,
+   "uv": 791408,
+   "index": 812352,
+   "position0": [
+    -0.25420247788297123,
+    0.2534422403733956,
+    -0.012
+   ],
+   "spreadOf": "wingL"
+  },
+  {
+   "name": "spreadR",
+   "parent": "body",
+   "vertexCount": 2656,
+   "frontIndexCount": 7968,
+   "indexCount": 15936,
+   "position": 843768,
+   "uv": 875640,
+   "index": 896888,
+   "position0": [
+    0.24644900684580573,
+    0.2534422403733956,
+    -0.012
+   ],
+   "spreadOf": "wingR"
+  }
+ ],
+ "pivotHeight": {
+  "body": 0.28144690781796966
+ }
+}
